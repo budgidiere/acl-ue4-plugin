@@ -1,3 +1,4 @@
 [submodule "ACLPlugin/Source/ThirdParty/acl"]
 	path = ACLPlugin/Source/ThirdParty/acl
-	url = https://github.com/nfrechette/acl.git
+	url = https://github.com/budgidiere/acl.git
+	branch = fix-master
