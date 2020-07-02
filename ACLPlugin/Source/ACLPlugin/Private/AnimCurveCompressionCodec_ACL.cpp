@@ -1,4 +1,26 @@
-// Copyright 2020 Nicholas Frechette. All Rights Reserved.
+////////////////////////////////////////////////////////////////////////////////
+// The MIT License (MIT)
+//
+// Copyright (c) 2020 Nicholas Frechette
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+////////////////////////////////////////////////////////////////////////////////
 
 #include "AnimCurveCompressionCodec_ACL.h"
 
@@ -197,12 +219,12 @@ bool UAnimCurveCompressionCodec_ACL::Compress(const FCompressibleAnimData& AnimS
 }
 #endif // WITH_EDITORONLY_DATA
 
-struct UE4CurveDecompressionSettings final : public acl::decompression_settings
+struct UE4CurveDecompressionSettings : public acl::decompression_settings
 {
 	constexpr bool is_track_type_supported(acl::track_type8 type) const { return type == acl::track_type8::float1f; }
 };
 
-struct UE4CurveWriter final : public acl::track_writer
+struct UE4CurveWriter final : acl::track_writer
 {
 	const TArray<FSmartName>& CompressedCurveNames;
 	FBlendedCurve& Curves;
@@ -244,7 +266,7 @@ void UAnimCurveCompressionCodec_ACL::DecompressCurves(const FCompressedAnimSeque
 	Context.decompress_tracks(TrackWriter);
 }
 
-struct UE4ScalarCurveWriter final : public acl::track_writer
+struct UE4ScalarCurveWriter final : acl::track_writer
 {
 	float SampleValue;
 
